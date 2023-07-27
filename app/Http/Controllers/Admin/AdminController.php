@@ -299,6 +299,18 @@ class AdminController extends Controller
         }
     }
 
+    public function updateDokumen(Request $request)
+    {
+        // dd($request->all());
+        $response = $this->dokumenService->updateData($request->all());
+
+        if ($response['status']) {
+            return back()->withSuccess($response['message']);
+        } else {
+            return back()->withErrors($response['message']);
+        }
+    }
+
     public function hapusDokumen($dokumen_id)
     {
         $dokumen = Dokumen::where('id', $dokumen_id)->first();
@@ -559,6 +571,29 @@ class AdminController extends Controller
         ]);
 
         return back()->withSuccess('Data Sertifikasi berhasil ditambahkan');
+    }
+
+    public function updateSertifikasi(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_sertifikasi' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors()->first());
+        }
+
+        $check = Sertifikasi::where('id', $request->id)->first();
+
+        if (!$check) {
+            return back()->withErrors('Data Sertifikasi tidak ditemukan');
+        }
+
+        $check->update([
+            'nama_sertifikasi' => $request->nama_sertifikasi,
+        ]);
+
+        return back()->withSuccess('Data Sertifikasi berhasil diupdate');
     }
 
     public function deleteSertifikasi($sertifikasi_id)

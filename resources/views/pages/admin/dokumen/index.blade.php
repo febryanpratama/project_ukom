@@ -45,7 +45,8 @@
                                 </ul> --}}
                                 <span class="price">{{ $item->nama_dokumen }}</span>
                                 <br>
-                                <a href="{{ url('admin/dokumen-portfolio/'.$item->id.'/hapus') }}" class="text-danger">Hapus Dokumen</a>
+                                <a href="#" data-toggle="modal" data-target="#editModal{{ $item->id }}" class="badge badge-warning">Edit Dokumen</a>
+                                <a href="{{ url('admin/dokumen-portfolio/'.$item->id.'/hapus') }}" class="badge badge-danger">Hapus Dokumen</a>
                             </div>
                         </div>
                     </div>
@@ -58,6 +59,53 @@
 
 {{-- MODAL --}}
 
+@foreach ($data as $it)
+<div class="modal fade" id="editModal{{ $it->id }}">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah {{ $title }}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('admin/dokumen-portfolio/update') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="dokumen_id" value="{{ $it->id }}" id="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="" >Nama Dokumen</label>
+                            <input type="text" class="form-control text-black" name="nama_dokumen" value="{{ $it->nama_dokumen }}" placeholder="Contoh dokumen Satu" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="" >Tipe Dokumen </label>
+                            <select name="tipe" id="" class="form-control text-black">
+                                <option value=""  disabled> == PILIH == </option>
+                                <option value="PPK" {{ $it->tipe_dokumen == 'PPK' ? 'selected' : '' }}>PPK</option>
+                                <option value="POKJA" {{ $it->tipe_dokumen == 'POKJA' ? 'selected' : '' }}>POKJA</option>
+                            </select>
+                            {{-- <input type="text" class="form-control" placeholder="Contoh dokumen Satu" required> --}}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="" class="control-label">Upload Dokumen</label>
+                            <input type="file" class="dropify" name="file_dokumen" data-height="200" data-allowed-file-extensions="pdf" />
+                            {{-- <input type="file" class="dropify" data-height="300" /> --}}
+                            <small class="text-danger">Kosongkan jika tidak merubah file dokumen, dan File bertipe pdf.</small>
+                            {{-- <input type="file" class="dropify" placeholder="Contoh dokumen Satu" required> --}}
+                        </div>
+                    </div>
+                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
+@endforeach
 <div class="modal fade" id="exampleModalCenter">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -87,6 +135,7 @@
                             <label for="" class="control-label">Upload Dokumen</label>
                             <input type="file" class="dropify" name="file_dokumen" data-height="200" data-allowed-file-extensions="pdf" />
                             {{-- <input type="file" class="dropify" data-height="300" /> --}}
+                            <small class="text-danger">File bertipe pdf.</small>
 
                             {{-- <input type="file" class="dropify" placeholder="Contoh dokumen Satu" required> --}}
                         </div>
@@ -101,4 +150,5 @@
         </div>
     </div>
 </div>
+
 @endsection

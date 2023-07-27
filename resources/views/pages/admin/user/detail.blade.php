@@ -250,7 +250,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="card">
+                                    <div class="card" style="background-color: rgb(236, 236, 236)">
                                         <div class="card-body">
                                             <div class="new-arrival-product">
                                                 <div class="new-arrivals-img-contnent">
@@ -266,7 +266,55 @@
                                                     {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
                                                     <a href="#"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
                                                     
-                                                    {{-- <span class="price">{{ $dok->nama_dokumen }}</span> --}}
+                                                    <span class="price">Update Dokumen</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card" style="background-color: rgb(236, 236, 236)">
+                                        <div class="card-body">
+                                            <div class="new-arrival-product">
+                                                <div class="new-arrivals-img-contnent">
+                                                    <img src="https://image.freepik.com/free-vector/abstract-geometric-certificate-template_23-2148397294.jpg" class="img-fluid" alt="">
+                                                    {{-- <embed src="{{ asset('') }}dokumen/{{ $dok->path_dokumen }}" type="application/pdf" width="100%" height="100%"> --}}
+                                                </div>
+                                                <div class="new-arrival-content text-center mt-3">
+                                                    <h4>
+                                                        <a href="ecom-product-detail.html">
+                                                            Foto Sertifikasi L1
+                                                        </a>
+                                                    </h4>
+                                                    {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
+                                                    <a href="#"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
+                                                    
+                                                    <span class="price">Update Dokumen</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card" style="background-color: rgb(236, 236, 236)">
+                                        <div class="card-body">
+                                            <div class="new-arrival-product">
+                                                <div class="new-arrivals-img-contnent">
+                                                    <img src="https://image.freepik.com/free-vector/abstract-geometric-certificate-template_23-2148397294.jpg" class="img-fluid" alt="">
+                                                    {{-- <embed src="{{ asset('') }}dokumen/{{ $dok->path_dokumen }}" type="application/pdf" width="100%" height="100%"> --}}
+                                                </div>
+                                                <div class="new-arrival-content text-center mt-3">
+                                                    <h4>
+                                                        <a href="ecom-product-detail.html">
+                                                            Ijazah
+                                                        </a>
+                                                    </h4>
+                                                    {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
+                                                    <a href="#"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
+                                                    
+                                                    <span class="price">Update Dokumen</span>
+
                                                 </div>
                                             </div>
                                         </div>

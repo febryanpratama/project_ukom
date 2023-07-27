@@ -52,7 +52,7 @@
                                         <td>{{ $item->nama_sertifikasi }}</td>
                                         <td style="text-align: center">
                                             <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1" title="details"><i class="fa fa-bars"></i></a>
-                                            {{-- <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a> --}}
+                                            <a href="#" class="btn btn-warning shadow btn-xs sharp mr-1" data-toggle="modal" data-target="#editModal{{ $item->id }}"><i class="fa fa-pencil"></i></a>
                                             <a href="{{ url('admin/sertifikasi/'.$item->id.'/delete') }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -72,11 +72,42 @@
     </div>
 </div>
 
+@foreach ($data as $it)
+    <div class="modal fade" id="editModal{{ $it->id }}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ubah {{ $title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/sertifikasi/update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                <input type="hidden" name="sertifikasi_id" value="{{ $it->id }}">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="" >Nama Sertifikasi</label>
+                                <input type="text" class="form-control text-black" name="nama_sertifikasi" value="{{ $it->nama_sertifikasi }}" placeholder="Sertifikasi L1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 <div class="modal fade" id="exampleModalCenter">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah {{ $title }}</h5>
+                <h5 class="modal-title">Ubah {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>

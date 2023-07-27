@@ -55,6 +55,7 @@ Route::group([
     Route::prefix('/dokumen-portfolio')->group(function () {
         Route::get('/', 'indexDokumen');
         Route::post('/', 'storeDokumen');
+        Route::post('/update', 'updateDokumen');
 
         Route::get('/{id}/hapus', 'hapusDokumen');
     });
@@ -101,6 +102,7 @@ Route::group([
     Route::prefix('/sertifikasi')->group(function () {
         Route::get('/', 'indexSertifikasi');
         Route::post('/', 'postSertifikasi');
+        Route::post('/update', 'updateSertifikasi');
         Route::get('/{id}/delete', 'deleteSertifikasi');
     });
 

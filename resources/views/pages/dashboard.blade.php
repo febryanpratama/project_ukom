@@ -415,7 +415,7 @@
                                 </span>
                                 <div class="media-body">
                                     <p class="fs-14 mb-2">Rata<sup>2</sup> Nilai Assesment</p>
-                                    <span class="title text-black font-w600">/100</span>
+                                    <span class="title text-black font-w600">{{ App\Helpers\Format::getMeanAssesment() }}/100</span>
                                 </div>
                             </div>
                             <div class="progress" style="height:5px;">

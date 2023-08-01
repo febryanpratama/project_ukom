@@ -144,6 +144,9 @@ Route::group(
             Route::post('pendidikan', 'postPendidikan');
             Route::post('pekerjaan', 'postPekerjaan');
             Route::post('foto', 'postFoto');
+            Route::post('/ijazah', 'postIjazah');
+            Route::post('/foto-l1', 'postL1');
+            Route::post('/foto-ktp', 'postKTP');
             Route::get('pendidikan/{pendidikan_id}/delete', 'deletePendidikan');
             Route::get('pekerjaan/{pekerjaan_id}/delete', 'deletePekerjaan');
         });

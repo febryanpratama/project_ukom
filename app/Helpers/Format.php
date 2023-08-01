@@ -148,7 +148,7 @@ class Format
         $data = Portofolio::where('user_id', Auth::user()->id)->get();
 
         if ($data->isEmpty()) {
-            return null;
+            return '0';
         } else {
             return $data->count();
         }
@@ -184,6 +184,10 @@ class Format
     {
         $data = Assesment::where('user_id', Auth::user()->id)->max('nilai_assesment');
 
+        // dd($data);
+        if ($data == null) {
+            return '0';
+        }
         return $data;
     }
 
@@ -194,6 +198,10 @@ class Format
         $sum = $data->sum('nilai_assesment');
 
         // dd($sum);
+
+        if ($sum == 0) {
+            return '0';
+        }
 
         $total = $data->count();
 

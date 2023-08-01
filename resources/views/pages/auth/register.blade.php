@@ -126,12 +126,23 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="mb-1 text-white"><strong>Daftar Sebagai : </strong></label>
-                                                    <select name="tipe" class="form-control text-black" id="role" required>
+                                                    <select name="tipe" class="form-control text-black"  required>
                                                         <option value="" selected disabled> == Pilih == </option>
                                                         <option value="PPK">PPK</option>
                                                         <option value="POKJA">POKJA</option>
                                                         <option value="Sertifikat Dasar">Sertifikat Dasar</option>
                                                         <option value="Pejabat Pengadaan">Pejabat Pengadaan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="mb-1 text-white"><strong>Pilihan Registrasi : </strong></label>
+                                                    <select name="tipe_registrasi" class="form-control text-black"  required>
+                                                        <option value="" selected disabled> == Pilih == </option>
+                                                        <option value="OKUPASI">OKUPASI</option>
+                                                        <option value="NON-OKUPASI">NON-OKUPASI</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -144,7 +155,7 @@
                                             <div class="col-md-6 hide l1">
                                                 <div class="form-group">
                                                     <label class="mb-1 text-white"><strong>Foto Sertifikat L1</strong></label>
-                                                    <input type="file" class="form-control text-black" name="foto_l1" required>
+                                                    <input type="file" class="form-control text-black" name="foto_l1" >
                                                 </div>
                                             </div>
 

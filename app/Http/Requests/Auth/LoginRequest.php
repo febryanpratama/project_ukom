@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -41,6 +42,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // dd($this->tipe);
         if (Auth::attempt($this->only('email', 'password'), $this->boolean('remember'),)) {
             if (Auth::user()->is_active != 1) {
                 Auth::logout();
@@ -54,6 +56,8 @@ class LoginRequest extends FormRequest
                 'email' => __('auth.failed'),
             ]);
         }
+        // session('tipe', $this->tipe);
+        Session::put('tipe', $this->tipe);
         RateLimiter::clear($this->throttleKey());
     }
 

@@ -40,6 +40,18 @@
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
                                             <input class="form-control text-black" id="password" type="password" name="password" required autocomplete="current-password" >
                                         </div>
+                                        <div class="form-group">
+                                            <label class="mb-1 text-white"><strong>Login Sebagai</strong></label>
+                                            <select name="tipe" class="form-control" required id="">
+                                                <option value="" selected disabled> == Pilih == </option>
+                                                <option value="PPK">PPK</option>
+                                                <option value="POKJA">POKJA</option>
+                                                <option value="PP">PP</option>
+                                                <option value="SERTIFIKAT DASAR">SERTIFIKAT DASAR</option>
+                                                <option value="ADMIN">ADMIN</option>
+                                            </select>
+                                            {{-- <input class="form-control text-black" id="password" type="password" name="password" required autocomplete="current-password" > --}}
+                                        </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                <div class="custom-control custom-checkbox ml-1 text-white">

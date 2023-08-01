@@ -41,6 +41,9 @@ class AdminController extends Controller
     {
         $role = Auth::user()->roles->pluck('name')[0];
 
+        $session = session()->all();
+
+        // dd($session);
         if ($role == 'User') {
             # code...
             $dokumen = Dokumen::where('tipe_dokumen', Auth::user()->detail->tipe)->get();

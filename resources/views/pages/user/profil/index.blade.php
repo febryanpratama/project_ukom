@@ -274,7 +274,7 @@
                                         <div class="card-body">
                                             <div class="new-arrival-product">
                                                 <div class="new-arrivals-img-contnent">
-                                                    <img src="https://th.bing.com/th/id/OIP.SvbFzGArvKV904lA0Ey1VgAAAA?pid=ImgDet&rs=1" class="img-fluid" alt="">
+                                                    <img src="{{ asset('foto_ktp/'.$data->detail->foto_ktp) }}" class="img-fluid" alt="">
                                                     {{-- <embed src="{{ asset('') }}dokumen/{{ $dok->path_dokumen }}" type="application/pdf" width="100%" height="100%"> --}}
                                                 </div>
                                                 <div class="new-arrival-content text-center mt-3">
@@ -286,7 +286,7 @@
                                                     {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
                                                     <a href="#"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
                                                     
-                                                    <span class="price">Update Dokumen</span>
+                                                    <span class="price"><a href="#" class="badge badge-info" data-toggle="modal" data-target="#ubahKTP">Update Dokumen</a></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,7 +297,7 @@
                                         <div class="card-body">
                                             <div class="new-arrival-product">
                                                 <div class="new-arrivals-img-contnent">
-                                                    <img src="https://image.freepik.com/free-vector/abstract-geometric-certificate-template_23-2148397294.jpg" class="img-fluid" alt="">
+                                                    <img src="{{ asset('foto_l1/'.$data->detail->foto_l1) }}" class="img-fluid" alt="">
                                                     {{-- <embed src="{{ asset('') }}dokumen/{{ $dok->path_dokumen }}" type="application/pdf" width="100%" height="100%"> --}}
                                                 </div>
                                                 <div class="new-arrival-content text-center mt-3">
@@ -309,7 +309,41 @@
                                                     {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
                                                     <a href="#"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
                                                     
-                                                    <span class="price">Update Dokumen</span>
+                                                    <span class="price"><a href="#" class="badge badge-info" data-toggle="modal" data-target="#ubahL1">Update Dokumen</a></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card" style="background-color: rgb(236, 236, 236)">
+                                        <div class="card-body">
+                                            <div class="new-arrival-product">
+                                                <div class="new-arrivals-img-contnent">
+                                                    {{-- {{ dd($data->detail-) }} --}}
+                                                    @if ($data->detail->foto_ijazah == null)
+                                                        @php
+                                                            $data['foto_ijazah'] = 'default.jpg';
+                                                        @endphp
+                                                        @else
+                                                        @php
+                                                            $data['foto_ijazah'] = $data->detail->foto_ijazah;
+                                                        @endphp
+                                                    @endif
+                                                    <img src="{{ asset('foto_ijazah/'.$data['foto_ijazah']) }}" class="img-fluid" alt="">
+                                                    {{-- <embed src="{{ asset('') }}dokumen/{{ $dok->path_dokumen }}" type="application/pdf" width="100%" height="100%"> --}}
+                                                </div>
+                                                <div class="new-arrival-content text-center mt-3">
+                                                    <h4>
+                                                        <a href="ecom-product-detail.html">
+                                                            Ijazah
+                                                        </a>
+                                                    </h4>
+                                                    {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
+                                                    <a href="{{ asset('foto_ijazah/'.$data['foto_ijazah']) }}"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
+                                                    
+                                                    <span class="price"><a href="#" class="badge badge-info" data-toggle="modal" data-target="#dataIjazah">Update Dokumen</a></span>
 
                                                 </div>
                                             </div>
@@ -405,6 +439,33 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="dataIjazah">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Ijazah Terakhir</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('user/profil/ijazah') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="" >Foto Ijazah</label>
+                            <input type="file" class="form-control dropify text-black" name="foto_ijazah" placeholder="1" required>
+                        </div>
+                    </div>
+                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="ubahFoto">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -420,6 +481,90 @@
                         <div class="form-group col-md-12">
                             <label for="" >Foto Profil</label>
                             <input type="file" class="form-control dropify text-black" name="foto_profil" required>
+                        </div>
+                    </div>
+                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ubahIjazah">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah Status</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('user/profil/foto-ijazah') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="" >Ubah Foto Ijazah</label>
+                            
+                            <input type="file" class="form-control text-black" name="foto_ijazah"  required>
+                        </div>
+                    </div>
+                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ubahL1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah Sertifikat L1</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('user/profil/foto-l1') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="" >Ubah Sertifikat L1</label>
+                            
+                            <input type="file" class="form-control text-black" name="foto_l1"  required>
+                        </div>
+                    </div>
+                    {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ubahKTP">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah Foto KTP</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('user/profil/foto-ktp') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="" >Ubah Foto KTP</label>
+                            
+                            <input type="file" class="form-control text-black" name="foto_ktp"  required>
                         </div>
                     </div>
                     {{-- <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p> --}}

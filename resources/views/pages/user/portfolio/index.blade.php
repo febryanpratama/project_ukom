@@ -28,8 +28,8 @@
                                         @endif
                                     </a>
                                 </h4>
-                                <a href="{{ asset('') }}dokumen/{{ $item->path_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a>
-                                <a href="{{ url('user/portfolio/'.$item->id.'/detail') }}"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
+                                <a href="{{ asset('') }}dokumen/{{ $item->path_dokumen }}"><p style="color: blue">Lihat Contoh Indikator</p></a>
+                                <a href="{{ url('user/portfolio/'.$item->id.'/detail') }}"><p style="color: rebeccapurple">Lihat Indikator Anda</p></a>
                                 
                                 <span class="price">{{ $item->nama_dokumen }}</span>
                             </div>

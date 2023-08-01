@@ -313,7 +313,9 @@
                                                     {{-- <a href="{ asset('') }}dokumen/{{ $dok->pat{h_dokumen }}"><p style="color: blue">Lihat Contoh Dokumen</p></a> --}}
                                                     <a href="#"><p style="color: rebeccapurple">Lihat Dokumen Anda</p></a>
                                                     
-                                                    <span class="price">Update Dokumen</span>
+                                                    <a href="#" data-toggle="modal" data-target="#ubahIjazah">
+                                                        <span class="price">Update Dokumen</span>
+                                                    </a>
 
                                                 </div>
                                             </div>
@@ -395,6 +397,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')

@@ -22,6 +22,7 @@ class AuthService
             'password' => 'required|min:8',
             'foto_kta' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'tipe' => 'required|in:PPK,POKJA',
+            'tipe_registrasi' => 'required|in:OKUPASI,NON-OKUPASI',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -53,7 +54,9 @@ class AuthService
                 $file->move(public_path('images'), $filename);
                 $data['foto_kta'] = $filename;
             }
-            if ($data['foto_l1']) {
+
+
+            if (array_key_exists('foto_l1', $data)) {
                 $file = $data['foto_l1'];
                 $filename1 = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images'), $filename1);
@@ -67,6 +70,7 @@ class AuthService
                 'nama_lengkap' => $data['nama_lengkap'],
                 'nrp' => $data['nrp'],
                 'path_foto' => $data['foto_kta'],
+                'tipe_registrasi' => $data['tipe_registrasi'],
                 'tipe' => $data['tipe'],
                 'tempat_lahir' => $data['tempat_lahir'],
                 'tanggal_lahir' => $data['tanggal_lahir'],

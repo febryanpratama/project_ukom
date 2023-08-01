@@ -6,6 +6,7 @@ use App\Models\Dokumen;
 use App\Models\KomentarPortofolio;
 use App\Models\Portofolio;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserServices
@@ -17,7 +18,7 @@ class UserServices
 
         // dd(Auth::user()->detail->tipe);
 
-        $dokumen = Dokumen::where('tipe_dokumen', Auth::user()->detail->tipe)->get();
+        $dokumen = Dokumen::where('tipe_dokumen', Session::get('tipe'))->get();
 
         // dd($dokumen);
         return [

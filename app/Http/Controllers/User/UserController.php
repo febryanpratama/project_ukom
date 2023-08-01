@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -36,6 +37,7 @@ class UserController extends Controller
     public function indexPortfolio()
     {
         $title = 'Data Portfolio';
+        // dd(Session::get('tipe'));
 
         $response = $this->penggunaService->getDataPortofolio();
         // dd($response);
@@ -513,5 +515,89 @@ class UserController extends Controller
         ]);
 
         return back()->withSuccess('Berhasil Mengubah Data Sertifikasi');
+    }
+    public function postIjazah(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'foto_ijazah' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors()->first());
+        }
+
+        $file = $request->file('foto_ijazah');
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+        $tujuan_upload = 'foto_ijazah';
+        $file->move($tujuan_upload, $nama_file);
+
+        $detail = DetailUser::where('user_id', Auth::user()->id)->first();
+
+        if (!$detail) {
+            return back()->withErrors('Data Tidak Ditemukan');
+        }
+        $detail->update([
+            'foto_ijazah' => $nama_file,
+        ]);
+
+        return back()->withSuccess('Berhasil Mengubah Foto Ijazah');
+    }
+
+    public function postL1(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'foto_l1' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors()->first());
+        }
+
+        $file = $request->file('foto_l1');
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+        $tujuan_upload = 'foto_l1';
+        $file->move($tujuan_upload, $nama_file);
+
+        $detail = DetailUser::where('user_id', Auth::user()->id)->first();
+
+        if (!$detail) {
+            return back()->withErrors('Data Tidak Ditemukan');
+        }
+
+        $detail->update([
+            'foto_l1' => $nama_file
+        ]);
+
+        return back()->withSuccess('Berhasil Mengupdate Foto L1');
+    }
+    public function postKTP(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'foto_ktp' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors()->first());
+        }
+
+        $file = $request->file('foto_ktp');
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+        $tujuan_upload = 'foto_ktp';
+        $file->move($tujuan_upload, $nama_file);
+
+        $detail = DetailUser::where('user_id', Auth::user()->id)->first();
+
+        if (!$detail) {
+            return back()->withErrors('Data Tidak Ditemukan');
+        }
+
+        $detail->update([
+            'foto_ktp' => $nama_file
+        ]);
+
+        return back()->withSuccess('Berhasil Mengupdate Foto KTP');
     }
 }
